@@ -6,5 +6,11 @@
   },
   "dependencies": {
     "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "eslint": "^9.21.0",
+    "globals": "^16.0.0",
+    "typescript-eslint": "^8.26.0"
   }
 }
