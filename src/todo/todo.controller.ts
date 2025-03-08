@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getTodos as getTodoServices } from "../services/todos.service";
+import { getTodos as getTodoServices } from "./todo.service";
 
 export const getTodos = async (req: Request, res: Response): Promise<void> => {
   try {

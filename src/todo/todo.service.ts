@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { TodoDTO } from "../models/todo.model";
+import { TodoDTO } from "./todo.model";
 
 const prisma = new PrismaClient();
 
