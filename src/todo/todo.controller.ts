@@ -1,6 +1,6 @@
+import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 import TodoService from "./todo.service";
-import { PrismaClient } from "@prisma/client";
 
 class TodoController {
   private todoService: TodoService;

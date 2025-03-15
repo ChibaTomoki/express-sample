@@ -1,6 +1,6 @@
+import { PrismaClient } from "@prisma/client";
 import express from "express";
 import getTodoRouter from "./todo/todo.route";
-import { PrismaClient } from "@prisma/client";
 
 const app = express();
 const prisma = new PrismaClient();
