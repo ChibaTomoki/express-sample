@@ -1,14 +1,17 @@
 import { PrismaClient } from "@prisma/client";
 import { TodoDTO } from "./todo.model";
 
-const prisma = new PrismaClient();
+class TodoService {
+  constructor(private prisma: PrismaClient) {}
 
-export const getTodos = async (): Promise<Omit<TodoDTO, "createdAt">[]> => {
-  const todos = await prisma.todos.findMany();
+  async getTodos(): Promise<Omit<TodoDTO, "createdAt">[]> {
+    const todos = await this.prisma.todos.findMany();
 
-  return todos.map((todo) => ({
-    id: todo.id,
-    title: todo.title,
-    done: todo.done,
-  }));
-};
+    return todos.map((todo) => ({
+      id: todo.id,
+      title: todo.title,
+      done: todo.done,
+    }));
+  }
+}
+export default TodoService;
