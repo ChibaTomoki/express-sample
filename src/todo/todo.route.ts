@@ -12,6 +12,7 @@ const getTodoRouter = (prisma: PrismaClient) => {
   router.get("/", todoController.getTodos.bind(todoController));
   router.post("/", todoController.createTodo.bind(todoController));
   router.patch("/:id", todoController.updateTodo.bind(todoController));
+  router.delete("/:id", todoController.deleteTodo.bind(todoController));
   return router;
 };
 export default getTodoRouter;

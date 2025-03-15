@@ -41,5 +41,17 @@ class TodoService {
       done: todo.done,
     };
   }
+
+  async deleteTodo(id: number): Promise<Omit<TodoDTO, "createdAt">> {
+    const todo = await this.prisma.todos.delete({
+      where: { id },
+    });
+
+    return {
+      id: todo.id,
+      title: todo.title,
+      done: todo.done,
+    };
+  }
 }
 export default TodoService;

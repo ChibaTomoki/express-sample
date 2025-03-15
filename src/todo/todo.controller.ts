@@ -97,5 +97,31 @@ class TodoController {
         });
     }
   }
+
+  async deleteTodo(
+    req: Request<{ id: string }, unknown, unknown>,
+    res: Response,
+  ): Promise<void> {
+    const id = Number(req.params.id);
+    if (isNaN(id)) {
+      res.status(400).json({ message: "Invalid todo ID" });
+      return;
+    }
+
+    try {
+      const todo = await this.todoService.deleteTodo(id);
+      res.status(200).json(todo);
+    } catch (error) {
+      if (error instanceof Object && "message" in error) {
+        res
+          .status(500)
+          .json({ message: "Failed to delete todo", error: error.message });
+      } else
+        res.status(500).json({
+          message: "Failed to delete todo",
+          error: "An error occurred",
+        });
+    }
+  }
 }
 export default TodoController;
