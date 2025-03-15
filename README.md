@@ -43,3 +43,13 @@ SupabaseでInt8型を使用するとBigInt型になるが、TypeScriptでBigInt�
 ### 解決策
 
 SupabaseでInt8型を使うのをやめ、Int4型を使うように変更
+
+## Lefthookの設定
+
+### 問題
+
+Lefthookでnpmコマンドを設定しても実行できなかった
+
+### 解決策
+
+実行コマンドで`npx`を使うように変更

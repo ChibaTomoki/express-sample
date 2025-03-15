@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: true
+  commands:
+    type-check:
+      run: npx tsc --noEmit
+
+    lint:
+      run: npx eslint . --ext .ts
+
+    format-check:
+      run: npx prettier --check .
