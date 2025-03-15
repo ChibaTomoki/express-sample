@@ -4,7 +4,12 @@
   "scripts": {
     "dev": "nodemon -L",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "lint": "eslint . --ext .ts",
+    "format-check": "prettier --check .",
+    "format": "prettier --write .",
+    "type-check": "tsc --noEmit",
+    "check": "npm-run-all --parallel lint format-check type-check"
   },
   "dependencies": {
     "@prisma/client": "^6.4.1",

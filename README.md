@@ -7,14 +7,16 @@ https://typescriptbook.jp/reference/tsconfig/tsconfig.json-settings#%E3%83%90%E3
 
 # コマンド
 
-| コマンド                                             | 説明                           |
-| ---------------------------------------------------- | ------------------------------ |
-| `npm run dev`                                        | ローカルサーバー起動           |
-| `npm run build`                                      | ビルド                         |
-| `npm run start`                                      | ビルドしたものを起動           |
-| `npx prisma migrate dev --name <マイグレーション名>` | Prismaのマイグレーションを実行 |
-| `npx prisma db pull`                                 | DBのスキーマを取得             |
-| `npx prisma generate`                                | Prismaのスキーマを生成         |
+| コマンド                                             | 説明                                   |
+| ---------------------------------------------------- | -------------------------------------- |
+| `npm run dev`                                        | ローカルサーバー起動                   |
+| `npm run build`                                      | ビルド                                 |
+| `npm run start`                                      | ビルドしたものを起動                   |
+| `npm run format`                                     | フォーマット                           |
+| `npm run check`                                      | 型チェックとフォーマットチェックとLint |
+| `npx prisma migrate dev --name <マイグレーション名>` | Prismaのマイグレーションを実行         |
+| `npx prisma db pull`                                 | DBのスキーマを取得                     |
+| `npx prisma generate`                                | Prismaのスキーマを生成                 |
 
 # 上手くいかなかったこと(+あればその解決策)
 
