@@ -25,5 +25,21 @@ class TodoService {
       done: todo.done,
     };
   }
+
+  async updateTodo(
+    id: number,
+    params: Pick<TodoDTO, "title"> | Pick<TodoDTO, "done">,
+  ): Promise<Omit<TodoDTO, "createdAt">> {
+    const todo = await this.prisma.todos.update({
+      where: { id },
+      data: params,
+    });
+
+    return {
+      id: todo.id,
+      title: todo.title,
+      done: todo.done,
+    };
+  }
 }
 export default TodoService;

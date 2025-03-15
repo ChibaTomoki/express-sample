@@ -59,5 +59,43 @@ class TodoController {
         });
     }
   }
+
+  async updateTodo(
+    req: Request<{ id: string }, unknown, unknown>,
+    res: Response,
+  ): Promise<void> {
+    const id = Number(req.params.id);
+    if (isNaN(id)) {
+      res.status(400).json({ message: "Invalid todo ID" });
+      return;
+    }
+
+    const body = req.body;
+    const bodySchema = z.union([
+      z.object({ title: z.string(), done: z.never() }),
+      z.object({ title: z.never(), done: z.boolean() }),
+    ]);
+    const bodyIsValid = (body: unknown): body is z.infer<typeof bodySchema> =>
+      bodySchema.safeParse(body).success;
+    if (!bodyIsValid(body)) {
+      res.status(400).json({ message: "Invalid request body" });
+      return;
+    }
+
+    try {
+      const todo = await this.todoService.updateTodo(id, body);
+      res.status(200).json(todo);
+    } catch (error) {
+      if (error instanceof Object && "message" in error) {
+        res
+          .status(500)
+          .json({ message: "Failed to update todo", error: error.message });
+      } else
+        res.status(500).json({
+          message: "Failed to update todo",
+          error: "An error occurred",
+        });
+    }
+  }
 }
 export default TodoController;
