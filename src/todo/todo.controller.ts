@@ -72,8 +72,8 @@ class TodoController {
 
     const body = req.body;
     const bodySchema = z.union([
-      z.object({ title: z.string(), done: z.never() }),
-      z.object({ title: z.never(), done: z.boolean() }),
+      z.object({ title: z.string(), done: z.never().optional() }),
+      z.object({ title: z.never().optional(), done: z.boolean() }),
     ]);
     const bodyIsValid = (body: unknown): body is z.infer<typeof bodySchema> =>
       bodySchema.safeParse(body).success;
