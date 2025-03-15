@@ -3,7 +3,7 @@ import { TodoDTO } from "./todo.model";
 
 const prisma = new PrismaClient();
 
-export const getTodos = async (): Promise<Omit<TodoDTO, "created_at">[]> => {
+export const getTodos = async (): Promise<Omit<TodoDTO, "createdAt">[]> => {
   const todos = await prisma.todos.findMany();
 
   return todos.map((todo) => ({
