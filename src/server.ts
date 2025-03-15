@@ -5,6 +5,8 @@ import getTodoRouter from "./todo/todo.route";
 const app = express();
 const prisma = new PrismaClient();
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("Express Server is running");
 });

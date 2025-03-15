@@ -13,5 +13,17 @@ class TodoService {
       done: todo.done,
     }));
   }
+
+  async createTodo(title: string): Promise<Omit<TodoDTO, "createdAt">> {
+    const todo = await this.prisma.todos.create({
+      data: { title },
+    });
+
+    return {
+      id: todo.id,
+      title: todo.title,
+      done: todo.done,
+    };
+  }
 }
 export default TodoService;
