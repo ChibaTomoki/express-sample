@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
+import { z } from "zod";
 import TodoService from "./todo.service";
 
 class TodoController {
@@ -31,22 +32,16 @@ class TodoController {
     res: Response,
   ): Promise<void> {
     const body = req.body;
-    if (!body) {
-      res.status(400).json({ message: "Request body is required" });
+    const bodySchema = z.object({
+      title: z.string(),
+    });
+    const bodyIsValid = (body: unknown): body is z.infer<typeof bodySchema> =>
+      bodySchema.safeParse(body).success;
+    if (!bodyIsValid(body)) {
+      res.status(400).json({ message: "Invalid request body" });
       return;
     }
-    if (typeof body !== "object") {
-      res.status(400).json({ message: "Request body must be an object" });
-      return;
-    }
-    if (!("title" in body)) {
-      res.status(400).json({ message: "Title is required" });
-      return;
-    }
-    if (typeof body.title !== "string") {
-      res.status(400).json({ message: "Title must be a string" });
-      return;
-    }
+
     const title = body.title;
 
     try {
